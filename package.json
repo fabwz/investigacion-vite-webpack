@@ -1,0 +1,15 @@
+{
+  "name": "investigacion-vite-webpack-isw521",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo comparativa Vite vs Webpack - ISW-521, UTN",
+  "type": "module",
+  "scripts": {
+    "dev:webpack": "webpack serve --config config/webpack.config.js",
+    "dev:vite": "vite --config config/vite.config.js",
+    "build:webpack": "webpack --config config/webpack.config.js",
+    "build:vite": "vite build --config config/vite.config.js"
+  },
+  "author": "Fabián Zamora y Giovanni Sandi",
+  "license": "ISC"
+}
