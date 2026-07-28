@@ -8,8 +8,15 @@
     "dev:webpack": "webpack serve --config config/webpack.config.js",
     "dev:vite": "vite --config config/vite.config.js",
     "build:webpack": "webpack --config config/webpack.config.js",
-    "build:vite": "vite build --config config/vite.config.js"
+    "build:vite": "vite build --config config/vite.config.js",
+    "generate:components": "node scripts/generate-components.js"
   },
   "author": "Fabián Zamora y Giovanni Sandi",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^8.1.5",
+    "webpack": "^5.109.1",
+    "webpack-cli": "^7.2.1",
+    "webpack-dev-server": "^6.0.0"
+  }
 }
