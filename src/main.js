@@ -1,11 +1,4 @@
-// ============================================================
-// main.js - Punto de entrada de la aplicacion
-// ============================================================
-// Este archivo importa los 120 componentes generados y los monta
-// dentro de #app. Se usan imports explicitos (uno por componente)
-// en lugar de import.meta.glob para que el flujo sea facil de
-// explicar en vivo: cada linea es un import de ES modules estandar,
-// sin magia especifica de un bundler.
+// componentes
 
 import { createItem001 } from './components/generated/item001.js';
 import { createItem002 } from './components/generated/item002.js';
@@ -265,12 +258,7 @@ function renderApp() {
 
 renderApp();
 
-// Hot Module Replacement (HMR)
-//
-// componentPaths se declara una sola vez, fuera de ambas ramas, porque
-// tanto la rama de Vite (import.meta.hot) como la de Webpack (module.hot)
-// necesitan la misma lista de rutas para suscribirse a los 120
-// componentes generados.
+// hmr
 const componentPaths = [
   './components/generated/item001.js',
   './components/generated/item002.js',
@@ -394,32 +382,14 @@ const componentPaths = [
   './components/generated/item120.js',
 ];
 
-// Rama de Vite: import.meta.hot solo existe cuando el modulo corre bajo el
-// dev server de Vite (ESM nativo en el navegador + invalidacion granular
-// de modulos vía import/export). En un build de produccion, o bajo
-// Webpack, import.meta.hot es undefined y este bloque no se ejecuta.
+// hmr vite
 if (import.meta.hot) {
   import.meta.hot.accept(componentPaths, () => {
     renderApp();
   });
 }
 
-// Rama de Webpack: module.hot es el equivalente de Webpack a
-// import.meta.hot. Solo existe cuando webpack-dev-server corre con
-// hot: true (ver devServer.hot en config/webpack.config.js); es
-// undefined en un build de produccion o si HMR esta desactivado, por lo
-// que este bloque tampoco rompe nada fuera de ese escenario.
-//
-// Reutiliza el mismo array componentPaths declarado arriba: la lista de
-// rutas a observar es la misma sin importar el bundler, solo cambia la
-// API que usamos para suscribirnos a los cambios.
-//
-// Nota conceptual: Vite se apoya en ESM nativo del navegador para
-// invalidar y reemplazar modulos individuales sin un paso de bundling
-// intermedio en dev. Webpack, en cambio, necesita el
-// HotModuleReplacementPlugin (activado implicitamente por
-// devServer.hot: true) y expone su propia interfaz, module.hot, para que
-// cada modulo declare como aceptar sus propias actualizaciones.
+// hmr webpack
 if (module.hot) {
   module.hot.accept(componentPaths, () => {
     renderApp();
