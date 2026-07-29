@@ -389,9 +389,8 @@ if (import.meta.hot) {
   });
 }
 
-// hmr webpack
-if (module.hot) {
-  module.hot.accept(componentPaths, () => {
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept(componentPaths, () => {
     renderApp();
   });
 }
